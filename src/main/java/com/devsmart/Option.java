@@ -1,12 +1,10 @@
 package com.devsmart;
 
-import com.google.auto.value.AutoValue;
 
 import java.util.Calendar;
 import java.util.Date;
 
-@AutoValue
-public abstract class Option {
+public class Option {
 
     public static Option create(String symbol, Date expiration, double strike) {
         Calendar calendar = Calendar.getInstance();
@@ -20,21 +18,31 @@ public abstract class Option {
     }
 
     public static Option create(String symbol, double strike, int year, int month, int day) {
-        return new AutoValue_Option(symbol.toUpperCase(), strike, year, month, day);
+        return new Option(symbol.toUpperCase(), strike, year, month, day);
+    }
+
+    public final String symbol;
+    public final double strike;
+    public final int expirationYear;
+    public final int expirationMonth;
+    public final int expirationDay;
+
+
+    public Option(String symbol, double strike, int year, int month, int day) {
+        this.symbol = symbol;
+        this.strike = strike;
+        this.expirationYear = year;
+        this.expirationMonth = month;
+        this.expirationDay = day;
     }
 
 
-    public abstract String symbol();
-    public abstract double strike();
-    public abstract int expirationYear();
-    public abstract int expirationMonth();
-    public abstract int expirationDay();
 
     public int daysUntilExpiration() {
         Calendar start = Calendar.getInstance();
 
         Calendar end = Calendar.getInstance();
-        end.set(expirationYear(), expirationMonth(), expirationDay());
+        end.set(expirationYear, expirationMonth, expirationDay);
 
         if(end.before(start)) {
             return -1;
@@ -57,6 +65,6 @@ public abstract class Option {
 
     @Override
     public String toString() {
-        return String.format("%s %s %d/%d/%d", symbol(), strike(), expirationMonth(), expirationDay(), expirationYear());
+        return String.format("%s %s %d/%d/%d", symbol, strike, expirationMonth, expirationDay, expirationYear);
     }
 }

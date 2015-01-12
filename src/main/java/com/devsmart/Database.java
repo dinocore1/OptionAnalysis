@@ -14,11 +14,11 @@ public class Database {
         @Override
         public int compare(Option o1, Option o2) {
             return ComparisonChain.start()
-                    .compare(o1.symbol(), o2.symbol())
-                    .compare(o1.strike(), o2.strike())
-                    .compare(o1.expirationYear(), o2.expirationYear())
-                    .compare(o1.expirationMonth(), o2.expirationMonth())
-                    .compare(o1.expirationDay(), o2.expirationDay())
+                    .compare(o1.symbol, o2.symbol)
+                    .compare(o1.strike, o2.strike)
+                    .compare(o1.expirationYear, o2.expirationYear)
+                    .compare(o1.expirationMonth, o2.expirationMonth)
+                    .compare(o1.expirationDay, o2.expirationDay)
                     .result();
         }
     };
