@@ -13,7 +13,7 @@ public class Option {
         calendar.setTime(expiration);
 
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         return create(symbol, strike, year, month, day);
@@ -44,7 +44,7 @@ public class Option {
         Calendar start = Calendar.getInstance();
 
         Calendar end = Calendar.getInstance();
-        end.set(expirationYear, expirationMonth, expirationDay);
+        end.set(expirationYear, expirationMonth-1, expirationDay);
 
         if(end.before(start)) {
             return -1;
