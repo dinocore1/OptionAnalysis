@@ -1,6 +1,8 @@
 package com.devsmart;
 
 
+import com.google.common.base.Objects;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -61,6 +63,28 @@ public class Option {
             start.add(Calendar.DAY_OF_MONTH, 1);
         }
         return count;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(symbol, strike, expirationYear, expirationMonth, expirationDay);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+        if(obj instanceof Option) {
+            Option other = (Option)obj;
+            return Objects.equal(symbol, other.symbol)
+                    && strike == other.strike
+                    && expirationYear == other.expirationYear
+                    && expirationMonth == other.expirationMonth
+                    && expirationDay == other.expirationDay;
+        } else {
+            return false;
+        }
     }
 
     @Override

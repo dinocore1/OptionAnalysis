@@ -29,7 +29,7 @@ public class OptionDownloader {
         CommandLineParser parser = new BasicParser();
         try {
             CommandLine cmd = parser.parse(options, args);
-            String symbol = cmd.getOptionValue("s");
+            final String symbol = cmd.getOptionValue("s");
 
             String outputFile = cmd.getOptionValue("o", String.format("%s_options.db", symbol));
 
@@ -37,6 +37,7 @@ public class OptionDownloader {
             GoogleOptionDownload downloader = new GoogleOptionDownload(db, symbol);
 
             try {
+                System.out.println("Downloading call options for: " + symbol);
                 downloader.download();
                 Utils.saveOptionDb(db, new File(outputFile));
             } catch (IOException e) {

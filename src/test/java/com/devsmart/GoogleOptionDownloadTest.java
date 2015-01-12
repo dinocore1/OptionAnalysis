@@ -18,7 +18,7 @@ public class GoogleOptionDownloadTest {
 
         double getValue() {
             final int daysLeft = option.daysUntilExpiration();
-            return price.price() / daysLeft;
+            return price.price / daysLeft;
         }
     }
 
